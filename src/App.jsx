@@ -1,12 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import NavBar from './components/navBar'
 import Home from './pages/home'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Products from './pages/products'
+import About from './pages/about'
+import Login from './pages/login'
+import ProductsList from './pages/productsList'
+import SingleProduct from './pages/singleProduct'
 
 function App() {
   return (
-    <h1>Hello</h1>
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/about' element={<About />}/>
+        <Route path='/products' element={<Products />}>
+          <Route index element={<ProductsList />}/>
+          <Route path=':id' element={<SingleProduct />}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
